@@ -3,28 +3,31 @@ var express = require('express');
 var path 	= require('path');
 var router 	= express.Router();
 
-router.get('/', function(req, res){
-	burgers.selectBurgers('0', function(burgerResult){
+router.get('/', function(req,res) {
+	res.redirect('/burgers')
+});
 
-		burgers.selectBurgers('1', function(devourResult){
-
-			res.render('index', {myBurgers: burgerResult, devoured: devourResult});
-		});
+router.get('/burgers', function(req,res) {
+	burger.all(function(data){
+		var hbsObject = {burgers : data}
+		// console.log(hbsObject)
+		res.render('index', hbsObject);
 	});
 });
 
-router.post('/devour', function(req, res){
-	burgers.eatBurger(req.body.id);
-	res.redirect('/');
+router.post('/burgers/create', function(req,res) {
+	burger.create(['burger_name'], [req.body.name], function(data){
+		res.redirect('/burgers')
+	});
 });
 
-router.post('/add', function(req, res){
-	burgers.addBurger(String(req.body.name), 0);
-	res.redirect('/');
+router.put('/burgers/update/:id', function(req,res) {
+	var condition = 'id = ' + req.params.id;
+
+	burger.update({'devoured' : req.body.devoured}, condition, function(data){
+		res.redirect('/burgers');
+	});
 });
 
-router.post('/purge', function(req, res){
-	burgers.purgeBurgers();
-	res.redirect('/');
-})
+
 module.exports = router;

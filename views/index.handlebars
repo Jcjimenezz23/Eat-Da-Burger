@@ -1,0 +1,43 @@
+<div class="left col-md-4 col-md-offset-1">
+  <h2 class="not-eaten-title">Current Burgers</h2>
+  <ul class="not-eaten">
+    {{#each burgers}}
+      {{#unless this.devoured}}
+        <li>
+          <p>
+            {{this.burger_name}}
+          </p>
+        </li>
+        <form action="/burgers/update/{{this.id}}?_method=PUT" method="POST">
+          <input type="hidden" name="devoured" value="true">
+          <button class="eat" type="submit">EAT!</button>
+        </form>
+      {{/unless}}
+    {{/each}}
+  </ul>
+  <div class="add">
+    <form class="create-update-form" action="/burgers/create" method="POST">
+      <h2 class="add-title">Add a Burger</h2>
+      <div class="form-group">
+        <label >Burger Name:</label>
+        <input type="text" name="name">
+      </div>
+      <button type="submit">Add Burger</button>
+    </form>
+  </div>
+</div>
+
+<div class="right col-md-4 col-md-offset-2">
+  <h2 class="eaten-title">Eaten Burgers</h2>
+  <ul class="eaten">
+    {{#each burgers}}
+      {{#if this.devoured}}
+        <li>
+          <p>
+            {{this.burger_name}}
+          </p>
+        </li>
+      {{/if}}
+    {{/each}}
+  </ul>
+</div>

@@ -1,42 +1,48 @@
-var connection = require('./connection.js');
+var connection = require('../config/connection.js');
 
 var orm = {
-	selectWhere: function(table, selection, column, colValue, callback){
-		var queryString = 'SELECT ' + selection + ' FROM ' + table + ' WHERE ' + column + ' = ?';
+  all: function(tableInput, cb) {
+      var queryString = 'SELECT * FROM ' + tableInput + ';';
+      connection.query(queryString, function(err, result) {
+          if (err) throw err;
+          cb(result);
+      });
+  },
+  create: function(table, cols, vals, cb) {
+      var queryString = 'INSERT INTO ' + table;
 
-		connection.query(queryString, [valOfCol], function(err, res){
-			if (err) {throw err};
-			callback(res);
-		});
-	},
-	addItem: function(table, keysArray, valuesArray, callback){
-		var questionMarks = [];
-		for (var i = 0; i < keysArray.length; i++) {
-			questionMarks.push(' ?');
-		};
+      queryString = queryString + ' (';
+      queryString = queryString + cols.toString();
+      queryString = queryString + ') ';
+      queryString = queryString + 'VALUES ( ? );';
 
-		var queryString = 'INSERT INTO ' + table + ' (' + keysArray.toString() + ') VALUES (?)';
-		connection.query(queryString, [valuesArray],function(err, res){
-			if (err) {throw err};
-			callback(res);
-		});
-	},
-	updateItem: function(table, key, newValue, column, colValue, callback){
-		var queryString = 'UPDATE ' + table + ' SET ' + key + ' = ' + newValue + ' WHERE ' + column + ' = ?';
+      // console.log(queryString)
+      vals = vals.toString();
+      connection.query(queryString, vals, function(err, result) {
+        if (err) throw err;
+        cb(result);
+      });
+    },
+    delete: function(table, objColVals, condition, cb) {
+      // console.log('this is objColVals: ', objColVals);
+      if(objColVals.devoured == 'true'){
+        objColVals = 1
+      }else{
+        objColVals = 0
+      }
+      var queryString = 'UPDATE ' + table;
 
-		connection.query(queryString, [colValue], function(err, res){
-			if (err) {throw err};
-			callback(res);
-		});
-	},
-	removeItem: function(table, column, colValue, callback){
-		var queryString = 'DELETE FROM ' + table + ' WHERE ' + column + ' = ?';
+      queryString = queryString + ' SET ';
+      queryString = queryString + 'devoured = '+ objColVals;
+      queryString = queryString + ' WHERE ';
+      queryString = queryString + condition;
 
-		connection.query(queryString, [colValue], function(err, res){
-			if (err) {throw err}
-				callback(res);
-		})
-	}
+      // console.log(queryString);
+      connection.query(queryString, function(err, result) {
+        if (err) throw err;
+        cb(result);
+      });
+    }
 };
 
 module.exports = orm;
