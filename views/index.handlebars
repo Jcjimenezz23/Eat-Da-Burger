@@ -46,6 +46,8 @@
                 {{this.burger_name}}
               </p>
             </li>
+            <form action="burgers/update/{{this.id}}?_method=PUT" method="POST">
+             <input type="hidden" name="devoured" value="false">
           {{/if}}
         {{/each}}
       </ul>
