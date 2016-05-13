@@ -1,8 +1,19 @@
 body {
   width: 100%;
   background-color: #fff;
-  background-image: url("http://www.freeppt.net/background/white-grid-ppt-background.jpg");
+  background-image: url("http://www.seantindell.com/wp-content/uploads/2014/09/bg.jpg");
   overflow: hidden;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+}
+
+h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 32pt;
+}
+
+.uneaten-title {
+  text-align: center;
 }
 
 #pacman {
@@ -20,6 +31,15 @@ ul.uneaten li{
   margin: 10px;
 }
 
-.burgers-eaten {
-  overflow: scroll;
+#update {
+text-align: center;
+}
+
+#eaten {
+  text-align: center;
+}
+
+button {
+  background-color: #000;
+  color: yellow;
 }
