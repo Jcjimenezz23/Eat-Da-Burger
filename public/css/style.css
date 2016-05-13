@@ -12,6 +12,10 @@ h2 {
   font-size: 32pt;
 }
 
+input {
+  color: #000 ;
+}
+
 .uneaten-title {
   text-align: center;
 }
