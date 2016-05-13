@@ -1,0 +1,25 @@
+body {
+  width: 100%;
+  background-color: #fff;
+  background-image: url("http://www.freeppt.net/background/white-grid-ppt-background.jpg");
+  overflow: hidden;
+}
+
+#pacman {
+  float: left;
+}
+
+#ghost {
+  float: right;
+}
+
+ul.uneaten li{
+  display: inline-block;
+  float: left;
+  list-style-type:none;
+  margin: 10px;
+}
+
+.burgers-eaten {
+  overflow: scroll;
+}

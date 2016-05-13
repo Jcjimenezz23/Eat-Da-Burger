@@ -1,5 +1,6 @@
 var connection = require('../config/connection.js');
 
+
 var orm = {
   all: function(tableInput, cb) {
       var queryString = 'SELECT * FROM ' + tableInput + ';';
@@ -23,8 +24,7 @@ var orm = {
         cb(result);
       });
     },
-    delete: function(table, objColVals, condition, cb) {
-      // console.log('this is objColVals: ', objColVals);
+    update: function(table, objColVals, condition, cb) {
       if(objColVals.devoured == 'true'){
         objColVals = 1
       }else{

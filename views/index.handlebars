@@ -1,20 +1,26 @@
-<div class="left col-md-4 col-md-offset-1">
-  <h2 class="not-eaten-title">Current Burgers</h2>
-  <ul class="not-eaten">
+<div class="col-md-10 col-md-offset-1">
+  <h2 class="uneaten-title">Current Burgers</h2>
+  <ul class="uneaten">
+    <img id="pacman" src="../img/pacman.png" width="100px">
     {{#each burgers}}
       {{#unless this.devoured}}
         <li>
+          <img class="hamburgerImg" src="http://www.mygraphichunt.com/wp-content/uploads/2015/09/wpid-thick-burger-vector-1170x1170.jpg" width="100px">
           <p>
             {{this.burger_name}}
           </p>
+          <form action="/burgers/update/{{this.id}}?_method=PUT" method="POST">
+            <input type="hidden" name="devoured" value="true">
+            <button type="submit" class="btn btn-default">Eat it!</button>
+          </form>
         </li>
-        <form action="/burgers/update/{{this.id}}?_method=PUT" method="POST">
-          <input type="hidden" name="devoured" value="true">
-          <button class="eat" type="submit">EAT!</button>
-        </form>
       {{/unless}}
     {{/each}}
   </ul>
+  <img id="ghost" src="../img/ghost.png" width="150px">
+</div>
+
+<div class="right col-md-4 col-md-offset-2">
   <div class="add">
     <form class="create-update-form" action="/burgers/create" method="POST">
       <h2 class="add-title">Add a Burger</h2>
@@ -22,14 +28,13 @@
         <label >Burger Name:</label>
         <input type="text" name="name">
       </div>
-      <button type="submit">Add Burger</button>
+      <button type="submit" class="btn btn-default">Add Burger</button>
     </form>
   </div>
-</div>
 
-<div class="right col-md-4 col-md-offset-2">
+
   <h2 class="eaten-title">Eaten Burgers</h2>
-  <ul class="eaten">
+  <ul class="burgers-eaten">
     {{#each burgers}}
       {{#if this.devoured}}
         <li>
