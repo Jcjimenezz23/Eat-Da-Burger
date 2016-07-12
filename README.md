@@ -1,5 +1,5 @@
 #Week 14 Assignment
-##Eat-Da-Burger
+##Eat-Da-Burger (Pacman Style)
 
 ![alt tag](https://github.com/winniemlau/Eat-Da-Burger/blob/master/public/img/screenshot.jpg)
 
