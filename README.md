@@ -1,6 +1,8 @@
 #Week 14 Assignment
 ##Eat-Da-Burger
 
+![alt tag](https://github.com/winniemlau/Eat-Da-Burger/blob/master/public/img/screenshot.jpg)
+
 ###Objective
 
 * Create a burger logger with a homemade ORM (yum!), MySQL, Node, Express, handlebars using the MVC design pattern
