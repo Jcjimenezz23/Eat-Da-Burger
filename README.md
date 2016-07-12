@@ -16,6 +16,8 @@
 * Express.js
 * Handlebars
 * MySQL
+* ORM
+* MVC
 * NPM Packages
  1. Express
  2. Method-override
